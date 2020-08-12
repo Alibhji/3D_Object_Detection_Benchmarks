@@ -24,6 +24,9 @@ nvidia-docker run -ti --rm \
      -v /home/mjamali/proj/OFT_3_2020/data/kitti/object:/app/OpenPCDet/data/kitti \
 	 -v /home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/benchmark_models:/app/OpenPCDet/benchmark_models \
 	 -v /home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet_tools:/app/OpenPCDet/tools \
+	 -v /home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/pcdet/datasets:/app/OpenPCDet/pcdet/datasets \
+	 -v /home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/pcdet/models:/app/OpenPCDet/pcdet/models \
+	 -v /home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/pcdet/utils:/app/OpenPCDet/pcdet/utils \
 	 -p 8888:8888 \
      "alibhji/cuda9_pytorch1.3.1:OpenPcDet" \
 	 jupyter notebook --ip=0.0.0.0 --no-browser

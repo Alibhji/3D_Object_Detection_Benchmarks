@@ -133,7 +133,7 @@ if __name__ == '__main__':
     print("--------------------------->>>>>>>>>>>>>>>>>>>>>>>>")
 
     model = build_network(model_cfg=cfg.MODEL, num_class=len(cfg.CLASS_NAMES), dataset=train_set)
-    # print(model.backbone_3d)
+    print(model.backbone_3d)
 
 
 
