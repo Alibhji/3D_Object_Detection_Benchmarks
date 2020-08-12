@@ -113,7 +113,7 @@ RUN conda install --quiet --yes \
     jupyterlab && \
     conda clean --all -f -y 
 WORKDIR /app
-
+RUN pip install torchsummary
 
 #FROM jupyter/minimal-notebook
 
