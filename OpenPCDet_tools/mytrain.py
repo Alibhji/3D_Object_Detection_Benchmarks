@@ -60,7 +60,8 @@ def parse_config():
 
 if __name__ == '__main__':
     args, cfg = parse_config()
-    print(args)
+    print(vars(args))
+    mnn
 
     if args.launcher == 'none':
         dist_train = False
