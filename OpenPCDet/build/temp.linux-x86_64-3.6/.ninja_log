@@ -1,0 +1,27 @@
+# ninja log v5
+1	2241	1597810519493243152	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/iou3d_nms/src/iou3d_nms_kernel.o	19970e4d28e6e69f
+0	13928	1597810531181066787	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/iou3d_nms/src/iou3d_cpu.o	1a7e8b119071339b
+1	14473	1597810531725058578	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/iou3d_nms/src/iou3d_nms.o	900ffb8ed8cab77a
+0	20375	1597810537620969613	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/iou3d_nms/src/iou3d_nms_api.o	6e6077e56cb64104
+0	909	1597810538948949575	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/roiaware_pool3d/src/roiaware_pool3d_kernel.o	64cac02e504dfbc6
+0	19910	1597810557940663010	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/roiaware_pool3d/src/roiaware_pool3d.o	95d8b7c6382fa7f3
+0	759	1597810559068645990	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/roipoint_pool3d/src/roipoint_pool3d_kernel.o	bfad41aaa5d22d85
+0	19812	1597810578112358652	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/roipoint_pool3d/src/roipoint_pool3d.o	6f8e2f46581f7479
+1	6795	1597810585284250442	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/ball_query.o	53925aea0fa72ee8
+2	6838	1597810585328249779	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/sampling.o	1790c8f8775f730
+1	7143	1597810585632245192	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/group_points.o	27ee0a7030830941
+2	7673	1597810586164237165	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/interpolate.o	a45cd234e5070c2d
+1	20731	1597810599220040183	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/ball_query_gpu.o	6f9d908254e710ba
+1	20889	1597810599376037830	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/group_points_gpu.o	ff43c92ac9defadf
+3	20998	1597810599484036201	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/interpolate_gpu.o	910565b4a8b988c9
+0	21258	1597810599740032339	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/pointnet2_api.o	a27c05b2e9ae2297
+2	21348	1597810599836030890	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_stack/src/sampling_gpu.o	bca6efd93ccaaa40
+0	6142	1597810606427931435	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/group_points.o	7dea5cd05bcd66
+1	6249	1597810606535929805	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/interpolate.o	86346d21669d622d
+1	6275	1597810606559929444	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/sampling.o	4562514027732b07
+0	6680	1597810606963923349	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/ball_query.o	b19c4b0a10937f63
+1	20474	1597810620755715269	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/interpolate_gpu.o	dff7fedad2b4ea47
+0	20829	1597810621111709899	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/ball_query_gpu.o	8a0fe81ed3eaf4dc
+1	21013	1597810621295707123	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/group_points_gpu.o	cfceed6ff88d7cb
+2	21506	1597810621787699700	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/sampling_gpu.o	2ddc6e625a197acd
+0	21544	1597810621819699218	/home/mjamali/proj/G_All_b/3D_Object_Detection_Benchmarks/OpenPCDet/build/temp.linux-x86_64-3.6/pcdet/ops/pointnet2/pointnet2_batch/src/pointnet2_api.o	60a96d761cfe8b58
