@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 
 from ...ops.iou3d_nms import iou3d_nms_utils
-from .. import backbones_2d, backbones_3d, dense_heads, roi_heads
+from .. import backbones_2d, backbones_3d, dense_heads, roi_heads, semantic_segment
 from ..backbones_2d import map_to_bev
 from ..backbones_3d import pfe, vfe
 from ..model_utils import model_nms_utils
@@ -20,7 +20,7 @@ class Detector3DTemplate(nn.Module):
         self.register_buffer('global_step', torch.LongTensor(1).zero_())
 
         self.module_topology = [
-            'vfe', 'backbone_3d', 'map_to_bev_module', 'pfe',
+            'vfe', 'backbone_3d', 'sematic_segmentation', 'map_to_bev_module', 'pfe',
             'backbone_2d', 'dense_head',  'point_head', 'roi_head'
         ]
 
@@ -77,6 +77,16 @@ class Detector3DTemplate(nn.Module):
         model_info_dict['module_list'].append(backbone_3d_module)
         model_info_dict['num_point_features'] = backbone_3d_module.num_point_features
         return backbone_3d_module, model_info_dict
+
+    def build_sematic_segmentation(self, model_info_dict):
+        if self.model_cfg.get('SEMANSEGMENT', None) is None:
+            return None, model_info_dict
+
+        sematic_segmentation_module = semantic_segment.__all__[self.model_cfg.SEMANSEGMENT.NAME](
+            model_cfg=self.model_cfg.SEMANSEGMENT
+        )
+        model_info_dict['module_list'].append(sematic_segmentation_module)
+        return sematic_segmentation_module, model_info_dict
 
     def build_map_to_bev_module(self, model_info_dict):
         if self.model_cfg.get('MAP_TO_BEV', None) is None:

@@ -154,6 +154,8 @@ class DatasetTemplate(torch_data.Dataset):
         batch_size = len(batch_list)
         ret = {}
 
+
+
         for key, val in data_dict.items():
             try:
                 if key in ['voxels', 'voxel_num_points']:
@@ -164,6 +166,18 @@ class DatasetTemplate(torch_data.Dataset):
                         coor_pad = np.pad(coor, ((0, 0), (1, 0)), mode='constant', constant_values=i)
                         coors.append(coor_pad)
                     ret[key] = np.concatenate(coors, axis=0)
+
+                elif key in ['image2']:
+                    ret[key]= np.moveaxis(np.array(val),-1,1)
+
+                #
+                #     for i, coor in enumerate(val):
+                #         print(i)
+
+                    #     coor_pad = np.pad(coor, ((0, 0), (1, 0)), mode='constant', constant_values=i)
+                    #     coors.append(coor_pad)
+                    # ret[key] = np.concatenate(coors, axis=0)
+
                 elif key in ['gt_boxes']:
                     max_gt = max([len(x) for x in val])
                     batch_gt_boxes3d = np.zeros((batch_size, max_gt, val[0].shape[-1]), dtype=np.float32)
@@ -177,4 +191,5 @@ class DatasetTemplate(torch_data.Dataset):
                 raise TypeError
 
         ret['batch_size'] = batch_size
+
         return ret

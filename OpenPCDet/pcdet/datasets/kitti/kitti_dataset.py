@@ -7,6 +7,7 @@ from skimage import io
 from ...ops.roiaware_pool3d import roiaware_pool3d_utils
 from ...utils import box_utils, calibration_kitti, common_utils, object3d_kitti
 from ..dataset import DatasetTemplate
+import cv2 , os
 
 
 class KittiDataset(DatasetTemplate):
@@ -357,10 +358,19 @@ class KittiDataset(DatasetTemplate):
             fov_flag = self.get_fov_flag(pts_rect, img_shape, calib)
             points = points[fov_flag]
 
+        image_path = self.root_split_path
+        image2 = os.path.join(image_path, 'image_2', sample_idx + '.png')
+        image2 = cv2.imread(image2)
+        image2 = np.array(image2) / 255.0
+        # image2 = np.moveaxis(image2,-1,0)
+
+
+
         input_dict = {
             'points': points,
             'frame_id': sample_idx,
             'calib': calib,
+            'image2':image2
         }
 
         if 'annos' in info:
@@ -382,6 +392,10 @@ class KittiDataset(DatasetTemplate):
         data_dict = self.prepare_data(data_dict=input_dict)
 
         data_dict['image_shape'] = img_shape
+
+
+
+
         return data_dict
 
 

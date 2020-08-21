@@ -21,7 +21,7 @@ class Struct:
     def __init__(self, **entries):
         self.__dict__.update(entries)
 
-args = {'cfg_file': '../cfgs/kitti_models/my_pointrcnn.yaml', 'batch_size': 1, 'epochs': None, 'workers': 1, 'extra_tag': 'default', 'ckpt': None, 'pretrained_model': None, 'launcher': 'none', 'tcp_port': 18888, 'sync_bn': False, 'fix_random_seed': False, 'ckpt_save_interval': 1, 'local_rank': 0, 'max_ckpt_save_num': 30, 'merge_all_iters_to_one_epoch': False, 'set_cfgs': None, 'max_waiting_mins': 0, 'start_epoch': 0, 'save_to_file': False}
+args = {'cfg_file': '../cfgs/kitti_models/my_pointrcnn.yaml', 'batch_size': 2, 'epochs': None, 'workers': 1, 'extra_tag': 'default', 'ckpt': None, 'pretrained_model': None, 'launcher': 'none', 'tcp_port': 18888, 'sync_bn': False, 'fix_random_seed': False, 'ckpt_save_interval': 1, 'local_rank': 0, 'max_ckpt_save_num': 30, 'merge_all_iters_to_one_epoch': False, 'set_cfgs': None, 'max_waiting_mins': 0, 'start_epoch': 0, 'save_to_file': False}
 
 args = Struct(**args)
 print(args.cfg_file)
