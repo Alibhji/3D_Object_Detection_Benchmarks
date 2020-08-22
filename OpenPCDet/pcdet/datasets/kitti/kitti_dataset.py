@@ -65,6 +65,85 @@ class KittiDataset(DatasetTemplate):
         assert lidar_file.exists()
         return np.fromfile(str(lidar_file), dtype=np.float32).reshape(-1, 4)
 
+    def get_render_lidar_on_image(self,  idx,img, points, img_shape):
+        import matplotlib.pyplot as plt
+        plt.figure()
+        plt.imshow(img)
+        def project_to_image(points, proj_mat):
+            """
+            Apply the perspective projection
+            Args:
+                pts_3d:     3D points in camera coordinate [3, npoints]
+                proj_mat:   Projection matrix [3, 4]
+            """
+            num_pts = points.shape[1]
+
+            # Change to homogenous coordinate
+            # points = np.vstack((points, np.ones((1, num_pts))))
+            points = proj_mat @ points
+            points[:2, :] /= points[2, :]
+            return points[:2, :]
+
+
+        calib = self.get_calib(idx)
+        P_velo2cam_ref  = calib.V2C
+        P_velo2cam_ref  =  np.vstack((self.get_calib(idx).V2C, np.array([0., 0., 0., 1.])))
+        R_ref2rect = np.eye(4)
+        R_ref2rect[:3,:3] = calib.R0
+        P_rect2cam2 = calib.P2
+
+        proj_velo2cam2 = P_rect2cam2 @ R_ref2rect @ P_velo2cam_ref
+
+        # apply projection
+        pts_2d = project_to_image(points.T, proj_velo2cam2)
+
+        # Retrieve depth from lidar
+        imgfov_pc_velo = points
+        imgfov_pc_cam2 = proj_velo2cam2 @ imgfov_pc_velo.transpose()
+
+
+
+        cmap = plt.cm.get_cmap('hsv', 256)
+        cmap = np.array([cmap(i) for i in range(256)])[:, :3] * 255
+
+        for i in range(pts_2d.shape[1]):
+            depth = imgfov_pc_cam2[2, i]
+            color = cmap[int(640.0 / depth), :]
+            cv2.circle(img, (int(np.round(pts_2d[0, i])),
+                             int(np.round(pts_2d[1, i]))),
+                       2, color=tuple(color), thickness=-1)
+        # plt.imshow(img)
+        # plt.show()
+        print("pts_2d",pts_2d.shape , "imgfov_pc_cam2",imgfov_pc_cam2.shape)
+        print('img_shape',img_shape)
+
+        # cmap = plt.cm.get_cmap('hsv', 256)
+        # cmap = np.array([cmap(i) for i in range(256)])[:, :3] * 255
+        #
+        # imgfov_pc_velo = np.hstack((pts_2d, np.ones((pts_2d.shape[0], 1))))
+        #
+        # imgfov_pc_cam2 = proj_velo2cam2 @ imgfov_pc_velo.transpose()
+        #
+        # for i in range(pts_2d.shape[1]):
+        #     depth = imgfov_pc_cam2[2, i]
+        #     color = cmap[int(640.0 / depth), :]
+        #     cv2.circle(img, (int(np.round(pts_2d[0, i])),
+        #                      int(np.round(pts_2d[1, i]))),
+        #                2, color=tuple(color), thickness=-1)
+
+        print(proj_velo2cam2.shape)
+
+
+        # num_pts = points.shape[1]
+        # pts_2d = np.vstack((points, np.ones((1, num_pts))))
+        # print(proj_velo2cam2.shape ,points.shape )
+        # pts_2d = proj_velo2cam2 @ pts_2d.T
+        # pts_2d[:2, :] /= pts_2d[2, :]
+        # img_width ,img_height = img_shape
+
+        # Filter lidar points to be within image FOV
+
+
     def get_image_shape(self, idx):
         img_file = self.root_split_path / 'image_2' / ('%s.png' % idx)
         assert img_file.exists()
@@ -352,6 +431,8 @@ class KittiDataset(DatasetTemplate):
         points = self.get_lidar(sample_idx)
         calib = self.get_calib(sample_idx)
 
+
+
         img_shape = info['image']['image_shape']
         if self.dataset_cfg.FOV_POINTS_ONLY:
             pts_rect = calib.lidar_to_rect(points[:, 0:3])
@@ -392,8 +473,8 @@ class KittiDataset(DatasetTemplate):
         data_dict = self.prepare_data(data_dict=input_dict)
 
         data_dict['image_shape'] = img_shape
-
-
+        print(img_shape)
+        self.get_render_lidar_on_image(sample_idx , image2 , data_dict["points"] ,img_shape)
 
 
         return data_dict

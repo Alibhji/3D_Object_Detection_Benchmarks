@@ -21,7 +21,7 @@ class Struct:
     def __init__(self, **entries):
         self.__dict__.update(entries)
 
-args = {'cfg_file': '../cfgs/kitti_models/my_pointrcnn.yaml', 'batch_size': 2, 'epochs': None, 'workers': 1, 'extra_tag': 'default', 'ckpt': None, 'pretrained_model': None, 'launcher': 'none', 'tcp_port': 18888, 'sync_bn': False, 'fix_random_seed': False, 'ckpt_save_interval': 1, 'local_rank': 0, 'max_ckpt_save_num': 30, 'merge_all_iters_to_one_epoch': False, 'set_cfgs': None, 'max_waiting_mins': 0, 'start_epoch': 0, 'save_to_file': False}
+args = {'cfg_file': '../cfgs/kitti_models/my_pointrcnn.yaml', 'batch_size': 1, 'epochs': None, 'workers': 1, 'extra_tag': 'default', 'ckpt': None, 'pretrained_model': None, 'launcher': 'none', 'tcp_port': 18888, 'sync_bn': False, 'fix_random_seed': False, 'ckpt_save_interval': 1, 'local_rank': 0, 'max_ckpt_save_num': 30, 'merge_all_iters_to_one_epoch': False, 'set_cfgs': None, 'max_waiting_mins': 0, 'start_epoch': 0, 'save_to_file': False}
 
 args = Struct(**args)
 print(args.cfg_file)
@@ -101,7 +101,7 @@ import os
 import cv2
 
 image_path = train_set.root_split_path
-frame=train_set[12]
+frame=train_set[6]
 
 
 image2 = os.path.join(image_path ,'image_2',frame['frame_id']+'.png' )
@@ -110,16 +110,16 @@ image2 = cv2.imread(image2)
 image3 = os.path.join(image_path ,'image_3',frame['frame_id']+'.png' )
 image3 = cv2.imread(image3)
 
-f, ax = plt.subplots( 2, figsize=(15, 5))
-ax[0].set_title('Left RGB Image (cam2)')
-ax[0].imshow(image2)
-ax[1].set_title('Right RGB Image (cam3)')
-ax[1].imshow(image3)
+# f, ax = plt.subplots( 2, figsize=(15, 5))
+# ax[0].set_title('Left RGB Image (cam2)')
+# ax[0].imshow(image2)
+# ax[1].set_title('Right RGB Image (cam3)')
+# ax[1].imshow(image3)
 # plt.show()
-
-f2 = plt.figure(figsize=(15, 8))
-ax2 = f2.add_subplot(111, projection='3d')
-draw_point_cloud(frame,ax2, 'Velodyne scan', xlim3d=(-10,30))
+#
+# f2 = plt.figure(figsize=(15, 8))
+# ax2 = f2.add_subplot(111, projection='3d')
+# draw_point_cloud(frame,ax2, 'Velodyne scan', xlim3d=(-10,30))
 # plt.show()
 
 
